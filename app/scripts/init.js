@@ -5,7 +5,6 @@ require.config({
     /* starting point for application */
     deps: ['backbone.marionette', 'bootstrap', 'main'],
 
-
     shim: {
         backbone: {
             deps: [
