@@ -20,7 +20,9 @@ define([
             this.$el.html(this.html);
             this.$photoList = this.$("#photo-list");
             this.$photoFilters = this.$("#photo-filters");
-            this.collection = new PhotosCollection();
+            this.collection = new PhotosCollection([], {
+                url: '/photos'
+            });
             this.collection.fetch({
                 success: function (collection, response, options) {
 
@@ -29,7 +31,7 @@ define([
 
                 },
                 complete: function (xhr, textStatus){
-                    
+
                 }
             });
             this.listenTo(this.collection, 'add', this.render);
