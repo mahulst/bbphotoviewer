@@ -1,9 +1,6 @@
 require([
-	'backbone',
-	'application',
-	'regionManager'
-],
-function ( Backbone, App ) {
-    'use strict';
-	App.start();
+    'backbone',
+    'app/app'
+], function (Backbone, App) {
+    App.initialize();
 });

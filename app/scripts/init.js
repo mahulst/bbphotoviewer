@@ -6,6 +6,9 @@ require.config({
     deps: ['backbone.marionette', 'bootstrap', 'main'],
 
     shim: {
+        underscore: {
+            exports: '_'
+        },
         backbone: {
             deps: [
                 'underscore',
