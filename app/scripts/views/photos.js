@@ -20,26 +20,24 @@ define([
             this.$el.html(this.html);
             this.$photoList = this.$("#photo-list");
             this.$photoFilters = this.$("#photo-filters");
-            this.collection = new PhotosCollection({
-                url: '/photos'
-            });
+            this.collection = new PhotosCollection();
             this.collection.fetch({
                 success: function (collection, response, options) {
-                    debugger;
+
                 },
                 error: function (collection, response, options) {
-                    debugger;
+
                 },
                 complete: function (xhr, textStatus){
-                    debugger;
+                    
                 }
             });
-            this.listenTo(this.collection, 'change', this.render);
+            this.listenTo(this.collection, 'add', this.render);
             window.debug = this.collection;
         },
 
     	render: function () {
-            if (this.collection.length &&0) {
+            if (this.collection.length) {
                 var photoHtml = [];
                 this.collection.each(function (element, index, list) {
                     photoHtml.push(Templates['photos'](element.toJSON()));
