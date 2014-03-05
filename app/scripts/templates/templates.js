@@ -2,15 +2,22 @@ define([
 	'underscore'
 ], function (_){
 	var Templates = {};
-	Templates['photos'] = [
+	Templates['group'] = [
 		'<div class=" panel panel-info">',
 			'<div class=" panel-heading">',
 				'<h3 class=" panel panel-title">',
-				'photos made on - <%= dateAdded %>',
+				'photos of <%= groupName %>',
 				'</h3>',
 			'</div>',
 			'<div class=" panel-body">',
 			'panel content',
+			'</div>',
+		'</div>'
+	].join("");
+
+	Templates['photos'] = [
+		'<div class=" panel panel-info">',
+			'<img src= "<%= src %>" class="img-thumbnail"/>',
 			'</div>',
 		'</div>'
 	].join("");

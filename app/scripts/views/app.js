@@ -4,9 +4,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/photos',
+    'views/groups',
     'views/about'
-], function ($, _, Backbone, PhotosView, AboutView) {
+], function ($, _, Backbone, GroupsView, AboutView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -30,7 +30,7 @@ define([
             //listen to change of model
             this.listenTo(this.model, 'change', this.render);
 
-            this.views['photos'] = new PhotosView({
+            this.views['photos'] = new GroupsView({
                 id: 'page-photos',
                 className: 'page-view'
             });

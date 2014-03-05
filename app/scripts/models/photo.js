@@ -10,7 +10,8 @@ define([
         defaults: {
         	src: 'images/no-image.png',
         	name: '',
-        	category: 'none'
+        	category: 'none',
+            dateAdded: "1970-1-1"
 
         }
     });
