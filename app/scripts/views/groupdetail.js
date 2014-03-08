@@ -9,10 +9,10 @@ define([
 ], function ($, _, Backbone, PhotosCollection, Templates) {
     'use strict';
 
-    var PhotosView = Backbone.View.extend({
+    var GroupDetailView = Backbone.View.extend({
         template: Templates['photos'],
     	initialize: function () {
-    		var html = 'photos';//this.template(this.model.toJSON());
+    		var html = 'group detail';//this.template(this.model.toJSON());
     		this.$el.html(html);
     	},
         render : function () {
@@ -21,5 +21,5 @@ define([
         }
     });
 
-    return PhotosView;
+    return GroupDetailView;
 });

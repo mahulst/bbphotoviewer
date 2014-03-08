@@ -5,8 +5,9 @@ define([
     'underscore',
     'backbone',
     'views/groups',
-    'views/about'
-], function ($, _, Backbone, GroupsView, AboutView) {
+    'views/about',
+    'views/groupdetail'
+], function ($, _, Backbone, GroupsView, AboutView, GroupDetailView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -38,23 +39,29 @@ define([
                 id: 'page-about',
                 className: 'page-view'
             });
+            this.views['photosDetail'] = new GroupDetailView({
+                id: 'page-photosDetail',
+                className: 'page-view'
+            })
             this.$el.append(this.html);
 
             this.$('#content').append(this.views['about'].render().el);
             this.$('#content').append(this.views['photos'].render().el);
+            this.$('#content').append(this.views['photosDetail'].render().el);
         },
         render : function () {
             this.$('.navbar-text').html(this.model.get('selectedCategory'));
             return this;
         },
-        goToPage: function (page, category) {
+        goToPage: function (page, args) {
             //nav bar set active element for current page
             this.$('.nav li').removeClass('active');
             this.$('#nav-'+page).addClass('active');
             this.$('.page-view').hide();
             this.$('#page-' + page).show();
-
-            this.model.set('selectedCategory', category);
+            if (args) {
+                this.model.set('selectedCategory', args.category);
+            }
         }
     });
 

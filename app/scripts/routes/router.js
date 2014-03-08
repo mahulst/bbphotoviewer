@@ -17,7 +17,11 @@ define([
         	this.appView = view;
         },
         goToPhotos : function (category) {
-        	this.appView.goToPage('photos', category);
+            if(category) {
+                this.appView.goToPage('photosDetail', {category: category});
+            } else {
+        	   this.appView.goToPage('photos');
+            }
         },
         goToAbout: function () {
         	this.appView.goToPage('about');
