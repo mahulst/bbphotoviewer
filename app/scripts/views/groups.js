@@ -31,7 +31,6 @@ define([
             this.collection.fetch({
                 reset: true
             });
-            window.debug = this.collection;
         },
 
     	render: function () {

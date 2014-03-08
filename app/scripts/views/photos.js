@@ -22,10 +22,13 @@ define([
             var that = this,
                 photosHTML = [];
             
-            this.collection.each(function (element, index, list) {
+            _.chain(this.collection.first(4)).each(function (element, index, list) {
                 //add html of photos template with each photo in collection
                 photosHTML.push(that.template(element.toJSON()));
             });
+            if (this.collection.length > 4) {
+                photosHTML.push("more...")
+            }
             this.$el.append(photosHTML.join(''));
             return this;
         }
