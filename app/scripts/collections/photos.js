@@ -17,7 +17,8 @@ define([
                     "groups/",
                     this.group.get('groupId'),
                     "/photos"
-                ].join("")
+                ].join(""),
+                reset: true
             });
         }
     });

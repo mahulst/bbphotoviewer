@@ -27,7 +27,6 @@ define([
             this.collection = new GroupsCollection([], {
                 url: '/groups'
             });
-            this.collection.once('reset', this.initGroups);
             this.listenTo(this.collection, 'reset', this.render);
             this.collection.fetch({
                 reset: true
@@ -36,16 +35,27 @@ define([
         },
 
     	render: function () {
-            var photoView;
+            var photosView,
+                that = this;
+                this.$groupList.html('');
             if (this.collection.length) {
-                var photoHtml = [];
                 this.collection.each(function (element, index, list) {
-                    photoView = new PhotosView({
+                    var $groupEl,
+                    $groupBodyEl;
+                    //create html for groupelement
+                    $groupEl = $(that.template(element.toJSON()));
+                    that.$groupList.append($groupEl);
+                    //photosview needs body-element from groupelem
+                    $groupBodyEl = $('.panel-body', $groupEl);
+                    //set body-element as element to render to in photoview
+                    photosView = new PhotosView({
+                        el: $groupBodyEl[0],
                         collection: element.photos
                     });
-                    // photoHtml.push(photoView.render().el);
+                    //render photosview
+                    photosView.render();
+                    //add group element to this view
                 });
-                this.$groupList.html(photoHtml.join(""));
             } else {
                 this.$groupList.html("no photos to display");
             }
