@@ -15,13 +15,20 @@ define([
 		'</div>'
 	].join("");
 
-	Templates['photos'] = [
+	Templates['photo'] = [
 		'<div class=" panel panel-info">',
-			'<a href="#"><img src= "<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
-			'</div>',
+			'<a><img src= "<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
 		'</div>'
 	].join("");
 
+	Templates['photos'] = [
+		'<% _.each(photos, function (photo) {%>',
+		'<div class="">',
+			'<a><img src= "<%= photo.src %>" photo-id="<%= photo.photoId %>" category-id="<%= photo.categoryId %>" class="photo-link img-thumbnail"/></a>',
+			'</div>',
+		'</div>',
+		'<% });%>',
+	].join("");
 	for (var tmpl in Templates) {
 		if (Templates.hasOwnProperty(tmpl)) {
 			Templates[tmpl] = _.template(Templates[tmpl]);

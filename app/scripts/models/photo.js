@@ -12,7 +12,8 @@ define([
         	name: '',
         	category: 'none',
             dateAdded: "1970-1-1"
-        }
+        },
+        idAttribute: "photoId"
     });
 
     return PhotoModel;

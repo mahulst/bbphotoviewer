@@ -10,13 +10,10 @@ define([
     'use strict';
 
     var PhotosView = Backbone.View.extend({
-        template: Templates['photos'],
-        $groupElem: null, //element to render to
-
+        template: Templates['photo'],
     	initialize: function () {
     		var html = '';//this.template(this.model.toJSON());
     		this.$el.html(html);
-            this.on("clickPhoto", function () { debugger;})
             this.listenTo(this.collection, 'reset', this.render);
     	},
         events : {
@@ -37,11 +34,12 @@ define([
             return this;
         },
         clickPhoto : function (e) {
-            var photoData = {};
-            photoData.photoId = $(e.target).attr('photo-id');
-            photoData.categoryId = $(e.target).attr('category-id');
-            //fire global clickedPhoto event
-            Backbone.Notifications.trigger("clickedPhoto", photoData);
+            var photoId = $(e.target).attr('photo-id');
+            var categoryId = $(e.target).attr('category-id');
+            //navigate 
+            Backbone.Notifications.trigger("navigate", "photos/" + categoryId);
+            //select photo
+            Backbone.Notifications.trigger("selectPhoto", photoId);
         }
     });
 

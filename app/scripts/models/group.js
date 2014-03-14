@@ -12,6 +12,7 @@ define([
         	category: 'none',
             groupName: ''
         },
+        idAttribute: "groupId",
         initialize: function () {
             this.photos = new PhotosCollection([], {
                 group: this

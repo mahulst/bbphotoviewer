@@ -32,7 +32,6 @@ define([
             Backbone.Notifications = {};
             _.extend(Backbone.Notifications, Backbone.Events);
 
-            this.listenTo(Backbone.Notifications, "clickedPhoto", this.clickedPhoto);
             //listen to change of model
             this.listenTo(this.model, 'change', this.render);
             this.views['photos'] = new GroupsView({
@@ -58,17 +57,18 @@ define([
             return this;
         },
         goToPage: function (page, args) {
+            var groupModel;
             //nav bar set active element for current page
             this.$('.nav li').removeClass('active');
             this.$('#nav-'+page).addClass('active');
             this.$('.page-view').hide();
             this.$('#page-' + page).show();
-            if (args) {
-                this.model.set('selectedCategory', args.category);
+            if (args && args.category) {
+                groupModel = this.views['photos'].collection.get(args.category);
+                this.model.set('selectedCategory', groupModel.groupName);
+                this.views['photosDetail'].model = groupModel;
+                this.views['photosDetail'].render();
             }
-        },
-        clickedPhoto: function (photoData) {
-            debugger;
         }
     });
 

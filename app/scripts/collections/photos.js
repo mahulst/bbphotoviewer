@@ -8,6 +8,7 @@ define([
     'use strict';
 
     var PhotosCollection = Backbone.Collection.extend({
+        model: PhotoModel,
         initialize: function (models, options) {
             if(options){
         	   this.group = options.group;

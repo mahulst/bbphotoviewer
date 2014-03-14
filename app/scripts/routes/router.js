@@ -15,6 +15,7 @@ define([
         },
         initialize: function (view) {
         	this.appView = view;
+            this.listenTo(Backbone.Notifications, "navigate", this.navigateTo);
         },
         goToPhotos : function (category) {
             if(category) {
@@ -25,6 +26,9 @@ define([
         },
         goToAbout: function () {
         	this.appView.goToPage('about');
+        },
+        navigateTo: function (url) {
+            this.navigate(url, {trigger: true});
         } 
     });
     return Router;
