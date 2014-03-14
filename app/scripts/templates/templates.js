@@ -17,7 +17,7 @@ define([
 
 	Templates['photos'] = [
 		'<div class=" panel panel-info">',
-			'<a href="#photos/<%= category %>"><img src= "<%= src %>" class="img-thumbnail"/></a>',
+			'<a href="#"><img src= "<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
 			'</div>',
 		'</div>'
 	].join("");

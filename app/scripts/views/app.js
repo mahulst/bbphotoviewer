@@ -28,9 +28,13 @@ define([
         },
         views : {},
         initialize: function () {
+            // notification object for global events 
+            Backbone.Notifications = {};
+            _.extend(Backbone.Notifications, Backbone.Events);
+
+            this.listenTo(Backbone.Notifications, "clickedPhoto", this.clickedPhoto);
             //listen to change of model
             this.listenTo(this.model, 'change', this.render);
-
             this.views['photos'] = new GroupsView({
                 id: 'page-photos',
                 className: 'page-view'
@@ -62,6 +66,9 @@ define([
             if (args) {
                 this.model.set('selectedCategory', args.category);
             }
+        },
+        clickedPhoto: function (photoData) {
+            debugger;
         }
     });
 

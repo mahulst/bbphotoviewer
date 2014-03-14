@@ -14,9 +14,9 @@ define([
     	initialize: function () {
     		var html = 'group detail';//this.template(this.model.toJSON());
     		this.$el.html(html);
+
     	},
         render : function () {
-            
             return this;
         }
     });

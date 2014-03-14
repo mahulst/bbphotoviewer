@@ -16,8 +16,12 @@ define([
     	initialize: function () {
     		var html = '';//this.template(this.model.toJSON());
     		this.$el.html(html);
+            this.on("clickPhoto", function () { debugger;})
             this.listenTo(this.collection, 'reset', this.render);
     	},
+        events : {
+            "click .photo-link": "clickPhoto"
+        },
         render : function () {
             var that = this,
                 photosHTML = [];
@@ -31,6 +35,13 @@ define([
             }
             this.$el.append(photosHTML.join(''));
             return this;
+        },
+        clickPhoto : function (e) {
+            var photoData = {};
+            photoData.photoId = $(e.target).attr('photo-id');
+            photoData.categoryId = $(e.target).attr('category-id');
+            //fire global clickedPhoto event
+            Backbone.Notifications.trigger("clickedPhoto", photoData);
         }
     });
 
