@@ -27,6 +27,10 @@ define([
             this.collection = new GroupsCollection([], {
                 url: '/groups'
             });
+
+            //if page is opened from another url than plain index, views need to be rerendered after collection has been fetched
+            this.collection.once('reset', this.collectionFetched);
+
             this.listenTo(this.collection, 'reset', this.render);
             this.collection.fetch({
                 reset: true
@@ -59,7 +63,10 @@ define([
                 this.$groupList.html("no photos to display");
             }
     		return this;
-    	}
+    	},
+        collectionFetched: function (e) {
+            Backbone.Notifications.trigger('photosFetched');
+        }
     });
 
     return GroupsView;

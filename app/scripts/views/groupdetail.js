@@ -17,7 +17,7 @@ define([
     		var html = 'group detail';//this.template(this.model.toJSON());
     		this.$el.html(html);
             this.listenTo(this.model, "change", this.render);
-            this.listenTo(this.model, "reset", this.render);
+            this.listenTo(this.model, "change", this.changePhotoCollection);
             this.listenTo(Backbone.Notifications, "selectPhoto", this.selectPhoto);
     	},
         render : function () {
@@ -30,6 +30,9 @@ define([
             if(this.model) {
                 this.selectedPhoto = this.model.photos.get(photoId);
             }
+        },
+        changePhotoCollection : function () {
+            this.listenTo(this.model.photos, "reset", this.render);            
         }
     });
 

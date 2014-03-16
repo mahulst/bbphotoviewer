@@ -34,6 +34,7 @@ define([
 
             //listen to change of model
             this.listenTo(this.model, 'change', this.render);
+            this.listenTo(Backbone.Notifications, 'photosFetched', this.photosFetched);
             this.views['photos'] = new GroupsView({
                 id: 'page-photos',
                 className: 'page-view'
@@ -53,7 +54,10 @@ define([
             this.$('#content').append(this.views['photosDetail'].render().el);
         },
         render : function () {
-            this.$('.navbar-text').html(this.model.get('selectedCategory'));
+            var groupModel = this.views['photos'].collection.get(this.model.get('selectedCategoryId'));
+            if(groupModel){
+                this.$('.navbar-text').html(groupModel.get('groupName'));
+            }
             return this;
         },
         goToPage: function (page, args) {
@@ -64,11 +68,21 @@ define([
             this.$('.page-view').hide();
             this.$('#page-' + page).show();
             if (args && args.category) {
+                this.model.set('selectedCategoryId', args.category);
                 groupModel = this.views['photos'].collection.get(args.category);
-                this.model.set('selectedCategory', groupModel.groupName);
-                this.views['photosDetail'].model = groupModel;
-                this.views['photosDetail'].render();
+                if(groupModel) {
+                    this.views['photosDetail'].model = groupModel;
+                    this.views['photosDetail'].render();
+                }
             }
+        },
+        //first time photos are fetched there may be a need to re render some views. 
+        photosFetched: function () {
+            this.render();
+
+            var groupModel = this.views['photos'].collection.get(this.model.get('selectedCategoryId'));
+            this.views['photosDetail'].model = groupModel;
+            this.views['photosDetail'].changePhotoCollection();
         }
     });
 

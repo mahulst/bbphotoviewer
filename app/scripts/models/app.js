@@ -9,7 +9,8 @@ define([
     var AppModel = Backbone.Model.extend({
         defaults: {
         	sort: '',
-        	selectedCategory: null
+        	selectedCategory: null,
+            selectedCategoryId: null
         }
     });
 
