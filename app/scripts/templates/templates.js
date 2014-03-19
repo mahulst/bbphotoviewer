@@ -29,6 +29,11 @@ define([
 		'</div>',
 		'<% });%>',
 	].join("");
+
+	Templates['upload'] = [		
+		'<div id="dropzone-div" class=dropzone>',
+		'</div>'
+	].join("");
 	for (var tmpl in Templates) {
 		if (Templates.hasOwnProperty(tmpl)) {
 			Templates[tmpl] = _.template(Templates[tmpl]);

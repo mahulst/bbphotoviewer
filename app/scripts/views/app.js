@@ -6,8 +6,9 @@ define([
     'backbone',
     'views/groups',
     'views/about',
-    'views/groupdetail'
-], function ($, _, Backbone, GroupsView, AboutView, GroupDetailView) {
+    'views/groupdetail',
+    'views/upload'
+], function ($, _, Backbone, GroupsView, AboutView, GroupDetailView, UploadView) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -18,6 +19,7 @@ define([
         	"<ul class='nav navbar-nav'>",
             "<li id=nav-photos><a class=navbar-brand href=#photos>photos</a></li>",
             "<li id=nav-about><a class=navbar-brand href=#about>about</a></li>",
+            "<li id=nav-upload><a class=navbar-brand href=#upload>upload</a></li>",
             "</ul>",
             "<p class='navbar-text pull-right'></p>",
             "</div>",
@@ -46,12 +48,17 @@ define([
             this.views['photosDetail'] = new GroupDetailView({
                 id: 'page-photosDetail',
                 className: 'page-view'
-            })
+            });
+            this.views['upload'] = new UploadView({
+                id: 'page-upload',
+                className: 'page-view'
+            });
             this.$el.append(this.html);
 
             this.$('#content').append(this.views['about'].render().el);
             this.$('#content').append(this.views['photos'].render().el);
             this.$('#content').append(this.views['photosDetail'].render().el);
+            this.$('#content').append(this.views['upload'].render().el);
         },
         render : function () {
             var groupModel = this.views['photos'].collection.get(this.model.get('selectedCategoryId'));

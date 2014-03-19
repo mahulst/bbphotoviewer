@@ -19,6 +19,10 @@ require.config({
         bootstrap: {
             deps: ['jquery'],
             exports: 'jquery'
+        },
+        dropzone: {
+            deps: ['jquery'],
+            exports: 'Dropzone'
         }
     },
 
@@ -26,6 +30,7 @@ require.config({
         jquery: '../bower_components/jquery/jquery',
         backbone: '../bower_components/backbone-amd/backbone',
         underscore: '../bower_components/underscore-amd/underscore',
+        dropzone: '../bower_components/dropzone-amd-module/dropzone-amd-module',
 
         /* alias all marionette libs */
         'backbone.marionette': '../bower_components/backbone.marionette/lib/core/amd/backbone.marionette',

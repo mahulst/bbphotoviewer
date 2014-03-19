@@ -12,12 +12,10 @@ define([
 
     var GroupDetailView = Backbone.View.extend({
         template: Templates['photos'],
-        model: new GroupModel(),
-    	initialize: function () {
+        initialize: function () {
+
     		var html = 'group detail';//this.template(this.model.toJSON());
     		this.$el.html(html);
-            this.listenTo(this.model, "change", this.render);
-            this.listenTo(this.model, "change", this.changePhotoCollection);
             this.listenTo(Backbone.Notifications, "selectPhoto", this.selectPhoto);
     	},
         render : function () {
@@ -32,7 +30,9 @@ define([
             }
         },
         changePhotoCollection : function () {
-            this.listenTo(this.model.photos, "reset", this.render);            
+            if(this.model){
+                this.listenTo(this.model.photos, "reset", this.render);            
+            }
         }
     });
 

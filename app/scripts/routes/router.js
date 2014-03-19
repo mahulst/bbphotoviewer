@@ -11,6 +11,7 @@ define([
         	'': 'goToPhotos',
             'photos/:category': 'goToPhotos',
             'photos': 'goToPhotos',
+            'upload': 'goToUpload',
         	'about': 'goToAbout'
         },
         initialize: function (view) {
@@ -25,7 +26,10 @@ define([
             }
         },
         goToAbout: function () {
-        	this.appView.goToPage('about');
+            this.appView.goToPage('about');
+        },
+        goToUpload: function () {
+            this.appView.goToPage('upload');
         },
         navigateTo: function (url) {
             this.navigate(url, {trigger: true});
