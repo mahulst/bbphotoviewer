@@ -1,0 +1,6 @@
+Commands om te draaien:
+ sudo npm install -g mocha-phantomjs
+sudo apt-get install imagemagick
+
+en het installeren van compass & ruby
+
