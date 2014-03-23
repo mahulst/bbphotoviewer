@@ -32,11 +32,11 @@ app.use(function(req, res, next){
 app.use(express.static( path.join( __dirname, '../app') ));
 app.use(express.static( path.join( __dirname, '../.tmp') ));
 
-
 // route index.html
 app.get('/', function(req, res){
   res.sendfile( path.join( __dirname, '../app/index.html' ) );
 });
+
 app.get('/groups/:gid/photos', function(req, res){
 
   queries.getPhotosFromCategory(req.params.gid, res);
@@ -60,11 +60,31 @@ app.get('/uploads/fullsize/:file', function (req, res){
 //get images thumbs
 app.get('/uploads/thumbs/:file', function (req, res){
   var file = req.params.file;
-  var img = fs.readFileSync(__dirname + "/uploads/thumbs/" + file);
-  res.writeHead(200, {'Content-Type': 'image/jpg' });
-  res.end(img, 'binary');
+  var path = __dirname + "/uploads/thumbs/" + file;
+  fs.exists(path, function(exists) {
+    var img;
+    if(exists) {
+      img = fs.readFileSync(path);
+    } else {      
+      img = fs.readFileSync(__dirname + "/uploads/thumbs/green-question-mark.jpg");
+    }
+    res.writeHead(200, {'Content-Type': 'image/jpg' });
+    res.end(img, 'binary');
+  })
 });
 
+//add categorie
+app.post('/categories/', function(req, res){
+  var categoriesName = req.body.categoriesName;
+  queries.addData({
+    table: 'categories',
+      values: {
+        categories_id: 'NULL',
+        categories_name: categoriesName
+      }
+  }, res);
+  
+});
 //handle uploads
 app.post('/upload', function(req, res) {
   var files = req.files;
@@ -99,8 +119,17 @@ app.post('/upload', function(req, res) {
           if (err) throw err;
           console.log('resized image to fit within 200x200px');
         });
-
-         res.redirect("/uploads/fullsize/" + imageName);
+        var photoObj =  {
+          table: 'photos',
+          values: {
+              photos_id: "NULL",
+              photos_name: imageName.substr(0, imageName.length-4),
+              path: imageName,
+              categories_id: 1
+            }
+        }
+        queries.addData(photoObj, res);
+        //res.redirect("/uploads/fullsize/" + imageName);
 
       });
     }

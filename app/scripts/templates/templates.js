@@ -17,14 +17,14 @@ define([
 
 	Templates['photo'] = [
 		'<div class=" panel panel-info">',
-			'<a><img src= "<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
+			'<a><img src="uploads/thumbs/<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
 		'</div>'
 	].join("");
 
 	Templates['photos'] = [
 		'<% _.each(photos, function (photo) {%>',
 		'<div class="">',
-			'<a><img src= "<%= photo.src %>" photo-id="<%= photo.photoId %>" category-id="<%= photo.categoryId %>" class="photo-link img-thumbnail"/></a>',
+			'<a><img src="uploads/thumbs/<%= photo.src %>" photo-id="<%= photo.photoId %>" category-id="<%= photo.categoryId %>" class="photo-link img-thumbnail"/></a>',
 			'</div>',
 		'</div>',
 		'<% });%>',

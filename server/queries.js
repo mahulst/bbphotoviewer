@@ -36,6 +36,36 @@ exports.getPhotosFromCategory = function (categoriesId, res) {
 	})
 }
 
+exports.addData = function (dataObj, res) {
+	var query,
+		v,
+		value;
+	query = [
+		"INSERT INTO ",
+		dataObj.table,
+		" ( "
+	];
+	for(v in dataObj.values) {
+		value = dataObj.values[v];
+		query.push(v + ", ");
+	}
+	//remove trailing comma
+	query[query.length-1] = query[query.length-1].substr(0, query[query.length-1].length-2);
+
+	query.push(") VALUES ( ");
+	for(v in dataObj.values) {
+		value = dataObj.values[v];
+		query.push("'" + value + "'" + ", ");
+	}
+	//remove trailing comma
+	query[query.length-1] = query[query.length-1].substr(0, query[query.length-1].length-2);
+
+	query.push(");");
+	console.log(query.join(""));
+	doQuery(query.join(""),function (data, args){
+		res.end('{status:"OK"}');
+	});
+}
 	
 doQuery = function(query, callback, args) {
 	var connection = mysql.createConnection({
