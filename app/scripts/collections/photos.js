@@ -21,6 +21,25 @@ define([
                 ].join(""),
                 reset: true
             });
+        },
+        parse: function(response){
+            var returnArr = [],
+                i,
+                n,
+                photo,
+                parsedPhoto;
+            for(i = 0, n = response.length; i < n; i += 1) {
+                photo = response[i];
+                parsedPhoto = {
+                    "photoId": photo.photos_id,
+                    "photoName": photo.photos_name,
+                    "src": photo.path,
+                    "dateAdded": photo.created,
+                    "categoryId": photo.categories_id,
+                }
+                returnArr.push(parsedPhoto);
+            }
+            return returnArr;
         }
     });
 

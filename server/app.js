@@ -1,14 +1,14 @@
 'use strict';
-
+var basePath = "/home/main22/projects/photoviewer/server/";
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var async = require('async');
 var hbs = require('express-hbs');
 var fs = require('fs');
-var photos = JSON.parse(fs.readFileSync('server/photos.json', 'utf8'));
+var photos = JSON.parse(fs.readFileSync(basePath + 'photos.json', 'utf8'));
 var im = require('imagemagick');
-
+var queries = require(basePath + 'queries');
 
 // init express
 var app = express();
@@ -39,14 +39,15 @@ app.get('/', function(req, res){
 });
 app.get('/groups/:gid/photos', function(req, res){
 
-  res.setHeader('Content-Type', 'application/json');
-  res.send(photos[req.params.gid]);
+  queries.getPhotosFromCategory(req.params.gid, res);
 }); 
 
 app.get('/groups', function(req, res){
+  var requestObj = {
+    table: 'categories'
+  };
 
-  res.setHeader('Content-Type', 'application/json');
-  res.sendfile( path.join( __dirname, 'groups.json' ) );
+  queries.getData(requestObj, res);
 });
 //get images fullsize
 app.get('/uploads/fullsize/:file', function (req, res){
