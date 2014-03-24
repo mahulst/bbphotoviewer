@@ -3,36 +3,47 @@ define([
 ], function (_){
 	var Templates = {};
 	Templates['group'] = [
-		'<div class=" panel panel-info">',
+		'<div class="category panel panel-default">',
 			'<div class=" panel-heading">',
-				'<h3 class=" panel panel-title">',
+				'<h3 class=" panel-title">',
 				'photos of <%= groupName %>',
 				'</h3>',
 			'</div>',
-			'<div class=" panel-body">',
+			'<div class="row panel-body">',
 			'panel content',
 			'</div>',
 		'</div>'
 	].join("");
 
 	Templates['photo'] = [
-		'<div class=" panel panel-info">',
+		'<div class="col-xs-6 col-md-3">',
 			'<a><img src="uploads/thumbs/<%= src %>" photo-id="<%= photoId %>" category-id="<%= categoryId %>" class="photo-link img-thumbnail"/></a>',
 		'</div>'
 	].join("");
 
 	Templates['photos'] = [
-		'<% _.each(photos, function (photo) {%>',
-		'<div class="">',
-			'<a><img src="uploads/thumbs/<%= photo.src %>" photo-id="<%= photo.photoId %>" category-id="<%= photo.categoryId %>" class="photo-link img-thumbnail"/></a>',
+
+	    '<div class="category panel panel-default">',
+	        '<div class=" panel-heading">',
+	            '<h3 class=" panel-title">',
+	        '</div>',
+	       	'<div class="row panel-body">',
+				'<% _.each(photos, function (photo) {%>',
+				'<div class="col-xs-6 col-md-3">',
+					'<a ><img src="uploads/thumbs/<%= photo.src %>" photo-id="<%= photo.photoId %>" category-id="<%= photo.categoryId %>" class="photo-link img-thumbnail"/></a>',
+					'</div>',
+				'<% });%>',
 			'</div>',
-		'</div>',
-		'<% });%>',
+		'</div>'
 	].join("");
 
 	Templates['upload'] = [		
-		'<div id="dropzone-div" class=dropzone>',
-		'</div>'
+		'<div id="category-div" class=category-select>',
+			'<select name=categoryId id=uploadCategory></select>',
+		'</div>',
+		'<form id="dropzone-div" class=dropzone>',
+			'<input id=dropzoneCategoryId type="hidden" name="categoryHidden" value="1" />',
+		'</form>'
 	].join("");
 	for (var tmpl in Templates) {
 		if (Templates.hasOwnProperty(tmpl)) {

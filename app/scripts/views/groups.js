@@ -35,6 +35,9 @@ define([
             this.collection.fetch({
                 reset: true
             });
+
+            //listen to uploadedphotos event
+            this.listenTo(Backbone.Notifications, 'photosUploaded', this.reFetch);
         },
 
     	render: function () {
@@ -66,6 +69,11 @@ define([
     	},
         collectionFetched: function (e) {
             Backbone.Notifications.trigger('photosFetched');
+        },
+        reFetch: function () {
+            this.collection.fetch({
+                reset: true
+            });
         }
     });
 

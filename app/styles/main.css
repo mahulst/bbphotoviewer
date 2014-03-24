@@ -1,8 +1,14 @@
-@import 'sass-bootstrap/lib/bootstrap';
 
 .hero-unit {
     margin: 50px auto 0 auto;
     width: 400px;
+}
+.category{ 
+width: 1024px;
+margin: auto;
+}
+#content {
+  margin-top: 62px;
 }
 
 /* The MIT License */

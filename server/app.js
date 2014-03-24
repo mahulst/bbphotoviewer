@@ -103,7 +103,7 @@ app.post('/upload', function(req, res) {
 
     } else {
 
-       var newPath = __dirname + "/uploads/fullsize/" + imageName;
+      var newPath = __dirname + "/uploads/fullsize/" + imageName;
 
       var thumbPath = __dirname + "/uploads/thumbs/" + imageName;
 
@@ -125,7 +125,7 @@ app.post('/upload', function(req, res) {
               photos_id: "NULL",
               photos_name: imageName.substr(0, imageName.length-4),
               path: imageName,
-              categories_id: 1
+              categories_id: req.body.categoryHidden
             }
         }
         queries.addData(photoObj, res);

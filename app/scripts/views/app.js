@@ -14,8 +14,8 @@ define([
     var AppView = Backbone.View.extend({
         id: 'app-view',
         html: [
-        	"<div class=navbar>",
-        	"<a class=navbar-brand href=#>photo viewer</a>",
+        	"<div class='navbar navbar-default navbar-fixed-top'>",
+        	"<a class=navbar-header href=#>photo viewer</a>",
         	"<ul class='nav navbar-nav'>",
             "<li id=nav-photos><a class=navbar-brand href=#photos>photos</a></li>",
             "<li id=nav-about><a class=navbar-brand href=#about>about</a></li>",
@@ -87,6 +87,9 @@ define([
         photosFetched: function () {
             this.render();
 
+            this.views['upload'].appendOptions(this.views['photos'].collection);
+
+            //set photosCollection for active photosDetailView
             var groupModel = this.views['photos'].collection.get(this.model.get('selectedCategoryId'));
             this.views['photosDetail'].model = groupModel;
             this.views['photosDetail'].changePhotoCollection();

@@ -30,6 +30,7 @@ define([
             if (this.collection.length > 4) {
                 photosHTML.push("more...")
             }
+
             this.$el.append(photosHTML.join(''));
             return this;
         },
