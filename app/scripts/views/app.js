@@ -14,12 +14,12 @@ define([
     var AppView = Backbone.View.extend({
         id: 'app-view',
         html: [
-        	"<div class='navbar navbar-default navbar-fixed-top'>",
+        	"<div id=header-mh class='navbar navbar-default navbar-fixed-top'>",
         	"<a class=navbar-header href=#>photo viewer</a>",
         	"<ul class='nav navbar-nav'>",
-            "<li id=nav-photos><a class=navbar-brand href=#photos>photos</a></li>",
-            "<li id=nav-about><a class=navbar-brand href=#about>about</a></li>",
-            "<li id=nav-upload><a class=navbar-brand href=#upload>upload</a></li>",
+            "<li id=nav-photos><a class=navbar-brand href=#photos>Photos</a></li>",
+            "<li id=nav-about><a class=navbar-brand href=#about>About</a></li>",
+            "<li id=nav-upload><a class=navbar-brand href=#upload>Upload new Photos</a></li>",
             "</ul>",
             "<p class='navbar-text pull-right'></p>",
             "</div>",
@@ -69,9 +69,6 @@ define([
         },
         goToPage: function (page, args) {
             var groupModel;
-            //nav bar set active element for current page
-            this.$('.nav li').removeClass('active');
-            this.$('#nav-'+page).addClass('active');
             this.$('.page-view').hide();
             this.$('#page-' + page).show();
             if (args && args.category) {

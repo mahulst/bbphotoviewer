@@ -13,7 +13,7 @@ define([
 
     var GroupsView = Backbone.View.extend({
         html: [
-            "<h3> photo view </h3>",
+            '<div class="breadcrumbs">> Photos / Groups</span></div>',
             "<div id=photo-list class='clearfix'>loading...</div>",
             "<div id=photo-filters></div>"
         ].join(""),

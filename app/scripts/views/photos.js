@@ -27,11 +27,12 @@ define([
                 //add html of photos template with each photo in collection
                 photosHTML.push(that.template(element.toJSON()));
             });
-            if (this.collection.length > 4) {
-                photosHTML.push("more...")
-            }
 
             this.$el.append(photosHTML.join(''));
+            if (this.collection.length > 4) {
+                this.$el.append('<div class="pull-right more-pictures" style="clear: both"><div><a>more...</a></div></div>');
+                             
+            }
             return this;
         },
         clickPhoto : function (e) {

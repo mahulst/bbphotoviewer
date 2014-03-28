@@ -6,7 +6,7 @@ define([
 		'<div class="category panel panel-default">',
 			'<div class=" panel-heading">',
 				'<h3 class=" panel-title">',
-				'photos of <%= groupName %>',
+				'Photos Of <%= groupName %>',
 				'</h3>',
 			'</div>',
 			'<div class="row panel-body">',

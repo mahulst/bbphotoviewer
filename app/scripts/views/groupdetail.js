@@ -20,7 +20,13 @@ define([
     	},
         render : function () {
             var photos = this.model ? this.model.photos.toJSON() : [];
-            var html = this.template({photos: photos});
+            var category = '';
+            if(this.model) {
+                category = this.model.attributes.groupName;
+            }
+            var html = '<div class="breadcrumbs"> <a href="#photos">> Photos</a> / <span id=category-span>' + category + '</span></div>';
+
+            html += this.template({photos: photos});
             this.$el.html(html);
             return this;
         },
