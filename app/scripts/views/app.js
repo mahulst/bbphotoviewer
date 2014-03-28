@@ -7,8 +7,10 @@ define([
     'views/groups',
     'views/about',
     'views/groupdetail',
-    'views/upload'
-], function ($, _, Backbone, GroupsView, AboutView, GroupDetailView, UploadView) {
+    'views/upload',
+    'dropzone',
+    'fancybox'
+], function ($, _, Backbone, GroupsView, AboutView, GroupDetailView, UploadView, Dropzone, Fancybox) {
     'use strict';
 
     var AppView = Backbone.View.extend({
@@ -30,6 +32,8 @@ define([
         },
         views : {},
         initialize: function () {
+            //set autoDiscore for Dropzone to false
+            Dropzone.autoDiscover = false;
             // notification object for global events 
             Backbone.Notifications = {};
             _.extend(Backbone.Notifications, Backbone.Events);

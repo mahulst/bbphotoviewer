@@ -52,9 +52,17 @@ app.get('/groups', function(req, res){
 //get images fullsize
 app.get('/uploads/fullsize/:file', function (req, res){
   var file = req.params.file;
-  var img = fs.readFileSync(__dirname + "/uploads/fullsize/" + file);
-  res.writeHead(200, {'Content-Type': 'image/jpg' });
-  res.end(img, 'binary');
+  var path = __dirname + "/uploads/fullsize/" + file;
+  fs.exists(path, function(exists) {
+    var img;
+    if(exists) {
+      img = fs.readFileSync(path);
+    } else {      
+      img = fs.readFileSync(__dirname + "/uploads/fullsize/green-question-mark.jpg");
+    }
+    res.writeHead(200, {'Content-Type': 'image/jpg' });
+    res.end(img, 'binary');
+  })
 
 });
 //get images thumbs

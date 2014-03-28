@@ -28,6 +28,13 @@ define([
 
             html += this.template({photos: photos});
             this.$el.html(html);
+
+            if(this.model) {
+                $('.fancybox').fancybox({
+                    'nextEffect': 'fade',
+                    'prevEffect': 'fade'
+                });
+            }
             return this;
         },
         selectPhoto: function (photoId) {

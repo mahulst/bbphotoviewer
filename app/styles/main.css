@@ -47,6 +47,10 @@ padding-bottom: 0px !important;
 width: 1024px;
 margin: auto;
 }
+#category-div{
+  width: 1024px;
+  margin: auto;
+}
 .breadcrumbs{
   width: 100%;
   background-color: #f8f8f8;
@@ -83,9 +87,11 @@ margin: auto;
 }
 .dropzone {
   position: relative;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: rgba(0,0,0,0.02);
   padding: 1em;
+  width: 1024px;
+  margin: auto;
+  background-color: #fff !important;
+  border: 1px solid #dcccc2 !important;
 }
 .dropzone.dz-clickable {
   cursor: pointer;
