@@ -1,5 +1,5 @@
 'use strict';
-var basePath = "/home/main22/projects/photoviewer/server/";
+var basePath = "/home/main22/projects/bbphotoviewer/server/";
 var express = require('express');
 var http = require('http');
 var path = require('path');
